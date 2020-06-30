@@ -1,0 +1,83 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The newUser schema",
+  "description": "Schema for creating a  new user",
+  "default": {},
+  "examples": [
+    {
+      "username": "david24",
+      "password": "David1991",
+      "first_name": "David",
+      "last_name": "Salazar",
+      "photo_url": "https://avatars0.githubusercontent.com/u/13444851?s=460&v=4",
+      "email": "david.test@hotmail.com"
+    }
+  ],
+  "required": ["username", "password", "email"],
+  "additionalProperties": true,
+  "properties": {
+    "username": {
+      "$id": "#/properties/username",
+      "type": "string",
+      "title": "The username schema",
+      "description": "Creating a new username",
+      "default": "",
+      "minLength": 5,
+      "maxLength": 55,
+      "examples": ["david24"]
+    },
+    "password": {
+      "$id": "#/properties/password",
+      "type": "string",
+      "title": "The password schema",
+      "description": "Creating a password.",
+      "default": "",
+      "minLength": 5,
+      "maxLength": 55,
+      "examples": ["David1991"]
+    },
+    "first_name": {
+      "$id": "#/properties/first_name",
+      "type": "string",
+      "title": "The first_name schema",
+      "description": "Creating a first_name.",
+      "default": "",
+      "minLength": 5,
+      "maxLength": 55,
+      "examples": ["David"]
+    },
+    "last_name": {
+      "$id": "#/properties/last_name",
+      "type": "string",
+      "title": "The last_name schema",
+      "description": "Creating a last_name.",
+      "default": "",
+      "minLength": 5,
+      "maxLength": 55,
+      "examples": ["Salazar"]
+    },
+    "photo_url": {
+      "$id": "#/properties/photo_url",
+      "type": "string",
+      "title": "The photo_url schema",
+      "description": "Creating a photo_url.",
+      "format": "uri",
+      "default": "",
+      "examples": [
+        "https://avatars0.githubusercontent.com/u/13444851?s=460&v=4"
+      ]
+    },
+    "email": {
+      "$id": "#/properties/email",
+      "type": "string",
+      "format": "email",
+      "minLength": 6,
+      "maxLength": 60,
+      "title": "The Email Schema ",
+      "description": "Creating a email.",
+      "default": "",
+      "examples": ["michael@rithmschool.com"]
+    }
+  }
+}

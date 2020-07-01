@@ -2,14 +2,14 @@
 
 This is a longer exercise from Springboard Bootcamp to practice Node, Express, and PostgreSQL with relationships. In it, I had to build “Jobly”, a job searching and connecting API.]
 
-##Goals and Requirements
+## Goals and Requirements
 
 - All responses should be in JSON. Use Insonmia or curl to test your API.
 - Be thoughtful about function and variable names, and write appropriate documentation for every function and route.
 - After each section, expect to write tests for the routes in that section.
 - For each resource, place all SQL/database logic in a class. We do not want to see ANY SQL in the routes!
 
-###Part One: Setup / Starter Code
+### Part One: Setup / Starter Code
 Setup:
 
 - Create a project folder, Git repository, and package.json
@@ -21,7 +21,7 @@ For PATCH routes that need to “partially update” a database object, we’ve 
 
 Write a unit test for this function.
 
-###Part Two: Companies
+### Part Two: Companies
 Create a table for companies, each company should have a:
 
 - **handle**: a primary key that is text
@@ -30,11 +30,11 @@ Create a table for companies, each company should have a:
 - **description**: a column that is text
 - **logo_url**: a column that is text
 
-####Routes
+#### Routes
 
 Create an **API** that has the following five routes:
 
-####GET /companies
+#### GET /companies
 
 This should return the handle and name for all of the company objects. It should also allow for the following query string parameters
 
@@ -45,34 +45,34 @@ This should return the handle and name for all of the company objects. It should
 
 This should return JSON of `{companies: [companyData, ...]}`
 
-####POST /companies
+#### POST /companies
 
 This should create a new company and return the newly created company.
 
 This should return JSON of `{company: companyData}`
 
-####GET /companies/[handle]
+#### GET /companies/[handle]
 
 This should return a single company found by its id.
 
 This should return JSON of {company: companyData}
   
-####PATCH /companies/[handle]
+#### PATCH /companies/[handle]
 This should update an existing company and return the updated company.
 
 This should return JSON of `{company: companyData}`
 
-####DELETE /companies/[handle]
+#### DELETE /companies/[handle]
 This should remove an existing company and return a message.
 
 This should return JSON of `{message: "Company deleted"}`
 
-####Validation and Testing
+#### Validation and Testing
 For your POST and PATCH methods, you should validate the provided data with the JSON schema validator.
 
 Add tests for each route you created in this section.
 
-###Part Three: Jobs
+### Part Three: Jobs
 **Before you continue, make sure you have completed the exercises in the previous sections. This exercise builds off of the previous exercise.**
 
 Add a table for jobs, each job should have an:
@@ -88,15 +88,15 @@ The **jobs** table has a one to many relationship with **companies** which means
 
 Make sure then when a company is deleted, all of the jobs associated with that company are deleted also.
 
-####New Routes
+#### New Routes
 Make sure your application has the following routes:
 
-####POST /jobs
+#### POST /jobs
 This route creates a new job and returns a new job.
 
 It should return JSON of `{job: jobData}`
 
-####GET /jobs
+#### GET /jobs
 This route should list all the titles and company handles for all jobs, ordered by the most recently posted jobs. It should also allow for the following query string parameters
 
 - **search**: If the query string parameter is passed, a filtered list of titles and company handles should be displayed based on the search term and if the job title includes it.
@@ -105,33 +105,33 @@ This route should list all the titles and company handles for all jobs, ordered 
 
 It should return JSON of `{jobs: [job, ...]}`
 
-####GET /jobs/[id]
+#### GET /jobs/[id]
 This route should show information about a specific job including a key of company which is an object that contains all of the information about the company associated with it.
 
 It should return JSON of `{job: jobData}`
 
-####PATCH /jobs/[id]
+#### PATCH /jobs/[id]
 This route updates a job by its ID and returns an the newly updated job.
 
 It should return JSON of `{job: jobData}`
 
-####DELETE /jobs/[id]
+#### DELETE /jobs/[id]
 This route deletes a job and returns a message.
 
 It should return JSON of `{ message: "Job deleted" }`
 
-####Update Routes from Part One
+#### Update Routes from Part One
 Update the following routes:
 
-####GET /companies/[handle]
+#### GET /companies/[handle]
 This should return a single company found by its id. It should also return a key of jobs which is an array of jobs that belong to that company: {company: `{...companyData, jobs: [job, ...]}}`
 
-####Validation and Testing
+#### Validation and Testing
 For your POST and PATCH methods, you should validate the provided data with the JSON schema validator.
 
 Add tests for each route you created in this section.
-
-###Part Four: Users
+ 
+### Part Four: Users
 Create a table for users, each user should have a:
 
 - **username**: a primary key that is text
@@ -142,69 +142,69 @@ Create a table for users, each user should have a:
 - **photo_url**: a column that is text
 - **is_admin**: a column that is not null, boolean and defaults to false
 
-####Routes
+#### Routes
 Create an API that has the following five routes:
 
-####POST /users
+#### POST /users
 This should create a new user and return information on the newly created user.
 
 This should return JSON: {user: user}
 
-####GET /users
+#### GET /users
 This should return the username, first_name, last_name and email of the user objects.
 
 This should return JSON: `{users: [{username, first_name, last_name, email}, ...]}`
 
-####GET /users/[username]
+#### GET /users/[username]
 This should return all the fields for a user excluding the password.
 
 This should return JSON: `{user: {username, first_name, last_name, email, photo_url}}`
 
-####PATCH /users/[username]
+#### PATCH /users/[username]
 This should update an existing user and return the updated user excluding the password.
 
 This should return JSON: `{user: {username, first_name, last_name, email, photo_url}}`
 
-####DELETE /users/[username]
+#### DELETE /users/[username]
 This should remove an existing user and return a message.
 
 This should return JSON: `{ message: "User deleted" }`
 
-####Validation and Testing
+#### Validation and Testing
 For your POST and PATCH methods, you should validate the provided data with the JSON schema validator.
 
 Add tests for each route you created in this section.
 
-###Part Five: Authentication / Authorization
+### Part Five: Authentication / Authorization
 Add the following route:
 
-####POST /login
+#### POST /login
 This should authenticate a user and return a JSON Web Token which contains a payload with the username and is_admin values.
 
 This should return JSON: {token: token}
 
 Change the following route:
 
-####POST /users
+#### POST /users
 This should create a new user and return a JWT which includes the username and whether or not the user is an admin.
 
 This should return JSON: `{token: token}`
 
 Protect the following routes and make sure only a user who has authenticated in can use them:
 
-####GET /jobs
-####GET /jobs/[id]
-####GET /companies
-####GET /companies/[handle]
+#### GET /jobs
+#### GET /jobs/[id]
+#### GET /companies
+#### GET /companies/[handle]
 Protect the following routes and make sure they are only accessible by the logged-in user with the same username:
 
-####PATCH /users/[username]
-####DELETE /users/[username]
+#### PATCH /users/[username]
+#### DELETE /users/[username]
 Protect the following routes and make sure they are only accessible by a user who is an admin:
 
-####POST /companies
-####POST /jobs
-####PATCH /companies/[handle]
-####DELETE /companies/[handle]
-####PATCH /jobs/[id]
-####DELETE /jobs/[id]
+#### POST /companies
+#### POST /jobs
+#### PATCH /companies/[handle]
+#### DELETE /companies/[handle]
+#### PATCH /jobs/[id]
+#### DELETE /jobs/[id]
